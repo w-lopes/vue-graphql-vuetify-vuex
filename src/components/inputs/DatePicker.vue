@@ -1,13 +1,9 @@
 <template>
-  <v-dialog
-    ref="dialog"
-    v-model="modal"
-    width="300px"
-  >
+  <v-dialog ref="dialog" v-model="modal" width="300px">
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
-        solo
         readonly
+        outlined
         v-model="date"
         v-bind="attrs"
         v-on="on"
@@ -17,16 +13,10 @@
     </template>
     <v-date-picker v-model="date">
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        color="error"
-        @click="modal = false"
-      > Close </v-btn>
-      <v-btn
-        depressed
-        color="primary"
-        @click="$refs.dialog.save(date)"
-      > Select </v-btn>
+      <v-btn text color="error" @click="modal = false"> Close </v-btn>
+      <v-btn depressed color="primary" @click="$refs.dialog.save(date)">
+        Select
+      </v-btn>
     </v-date-picker>
   </v-dialog>
 </template>
@@ -39,20 +29,10 @@ export default {
       type: String,
       required: true,
     },
-    model: {
-      type: String,
-      required: true,
-    },
-    value: {
-      type: String,
-      required: false,
-      default: '',
-    },
   },
   watch: {
     date(value) {
-      if (!this.$root.$refs.MainPage) return;
-      this.$root.$refs.MainPage.form[this.model] = value;
+      this.$emit("change", value);
     },
     value(passedValue) {
       this.date = passedValue;
@@ -60,7 +40,7 @@ export default {
   },
   data() {
     return {
-      date: '',
+      date: "",
       modal: false,
     };
   },

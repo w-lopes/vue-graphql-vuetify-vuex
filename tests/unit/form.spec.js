@@ -1,10 +1,13 @@
-import { createLocalVue, mount } from '@vue/test-utils';
+import { config, createLocalVue, mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import Vue from 'vue';
 import MainPage from '@/components/pages/MainPage.vue';
 
+
 Vue.use(Vuetify);
 const localVue = createLocalVue();
+
+config.mocks.$t = key => key
 
 const factory = (vuetify) => mount(MainPage, {
   localVue,
@@ -36,6 +39,6 @@ describe('Form valdiations', () => {
     form.validate();
     await Vue.nextTick();
 
-    expect(form.inputs[4].errorBucket[0]).toBe('At least one user is required');
+    expect(form.inputs[4].errorBucket[0]).toBe('Select at least one value');
   });
 })

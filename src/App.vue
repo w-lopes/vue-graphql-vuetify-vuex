@@ -1,18 +1,36 @@
 <template>
   <v-app>
     <div class="logos align-center">
-      <img src="https://cdn.worldvectorlogo.com/logos/vue-9.svg" alt="Vue logo"/>
-      <img src="https://cdn.worldvectorlogo.com/logos/vuetify.svg" alt="Vuetify logo"/>
-      <img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" alt="GraphQL logo"/>
-      <img src="https://cdn.worldvectorlogo.com/logos/gitlab.svg" alt="GitLab logo"/>
-      <img src="https://iconape.com/wp-content/files/dx/352988/svg/jest-seeklogo.com.svg" alt="Jest logo"/>
-      <br/>
+      <img
+        src="https://cdn.worldvectorlogo.com/logos/vue-9.svg"
+        alt="Vue logo"
+      />
+      <img
+        src="https://cdn.worldvectorlogo.com/logos/vuetify.svg"
+        alt="Vuetify logo"
+      />
+      <img
+        src="https://cdn.worldvectorlogo.com/logos/graphql.svg"
+        alt="GraphQL logo"
+      />
+      <img
+        src="https://cdn.worldvectorlogo.com/logos/gitlab.svg"
+        alt="GitLab logo"
+      />
+      <img
+        src="https://iconape.com/wp-content/files/dx/352988/svg/jest-seeklogo.com.svg"
+        alt="Jest logo"
+      />
+      <br />
     </div>
     <div class="description align-center">
       <div>
         <b>Simple Vue app with Vuetify.</b>
         <ul>
-          <li>It saves form data on vuex store and display it on a table in the next page;</li>
+          <li>
+            It saves form data on vuex store and display it on a table in the
+            next page;
+          </li>
           <li>It uses GraphQL to fetch users data from the GitLab API;</li>
           <li>It uses Jest to test the components and some logic.</li>
         </ul>
@@ -27,7 +45,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 };
 </script>
 

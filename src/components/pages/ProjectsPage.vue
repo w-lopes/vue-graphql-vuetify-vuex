@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row >
+    <v-row>
       <v-col cols="12" lg="8" offset-lg="2">
         <v-row>
           <v-col cols="12">
@@ -23,9 +23,7 @@
                       :href="user.webUrl"
                       :key="user.username"
                     >
-                      <v-avatar size="25" class="mr-1" :title="`${user.username}`">
-                        <v-img :src="user.avatarUrl.match(/^http/) ? user.avatarUrl : `https://gitlab.com/${user.avatarUrl}`"></v-img>
-                      </v-avatar>
+                      <user-avatar :url="user.avatarUrl" />
                     </a>
                   </td>
                 </tr>
@@ -50,19 +48,23 @@
 </template>
 
 <script>
+import UserAvatar from "@/components/shared/UserAvatar";
 
 export default {
-  name: 'ProjectsPage',
-  data () {
+  name: "ProjectsPage",
+  components: {
+    UserAvatar,
+  },
+  data() {
     return {
       headers: [
-        { text: 'Project', value: 'name' },
-        { text: 'Details', value: 'details' },
-        { text: 'Initial date', value: 'initDate' },
-        { text: 'End date', value: 'endDate' },
-        { text: 'Users', value: 'users' },
+        { text: "Project", value: "name" },
+        { text: "Details", value: "details" },
+        { text: "Initial date", value: "initDate" },
+        { text: "End date", value: "endDate" },
+        { text: "Users", value: "users" },
       ],
-    }
+    };
   },
   computed: {
     projects() {
@@ -77,7 +79,7 @@ export default {
      */
     navigateToMainPage() {
       this.$router.push({
-        name: 'MainPage',
+        name: "MainPage",
       });
     },
 
@@ -87,13 +89,13 @@ export default {
      * @return {string}
      */
     formatDate(date) {
-      if (!date) return '';
-      return (new Date(date)).toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
+      if (!date) return "";
+      return new Date(date).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
       });
-    }
+    },
   },
 };
 </script>

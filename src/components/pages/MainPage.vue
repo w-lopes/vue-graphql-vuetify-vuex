@@ -7,44 +7,33 @@
     </v-row>
     <v-row>
       <v-col cols="12" lg="8" offset-lg="2">
-        <v-form
-          lazy-validation
-          ref="form"
-        >
+        <v-form lazy-validation ref="form">
           <v-text-field
+            outlined
             required
-            solo
+            autofocus
             name="name"
             v-model="form.name"
-            :rules="[v => !!v || 'Project name is required']"
+            :rules="[(v) => !!v || 'Project name is required']"
             label="Name *"
           />
 
-          <v-text-field
-            solo
-            v-model="form.details"
-            label="Details"
-          />
+          <v-text-field outlined v-model="form.details" label="Details" />
 
           <v-row>
             <v-col cols="12" sm="12" md="6">
               <date-picker
                 label="Start Date"
-                model="initDate"
-                :value="form.initDate"
+                @change="form.initDate = $event"
               />
             </v-col>
 
             <v-col cols="12" sm="12" md="6">
-              <date-picker
-                label="End Date"
-                model="endDate"
-                :value="form.endDate"
-              />
+              <date-picker label="End Date" @change="form.endDate = $event" />
             </v-col>
           </v-row>
 
-          <users-auto-complete :users="form.users" />
+          <user-field label="Search users" @change="form.users = $event" />
 
           <v-col class="flex">
             <v-btn
@@ -82,21 +71,21 @@
 </template>
 
 <script>
-import DatePicker from '@/components/inputs/DatePicker';
-import UsersAutoComplete from '@/components/inputs/UsersAutoComplete';
+import DatePicker from "@/components/inputs/DatePicker";
+import UserField from "@/components/inputs/UserField";
 
 export default {
-  name: 'MainPage',
+  name: "MainPage",
   components: {
     DatePicker,
-    UsersAutoComplete,
+    UserField,
   },
   data: () => ({
     form: {
-      name: '',
-      details: '',
-      initDate: '',
-      endDate: '',
+      name: "",
+      details: "",
+      initDate: "",
+      endDate: "",
       users: [],
     },
   }),
@@ -112,7 +101,7 @@ export default {
      */
     navigateToProjectsPage() {
       this.$router.push({
-        name: 'ProjectsPage',
+        name: "ProjectsPage",
       });
     },
 
@@ -125,7 +114,7 @@ export default {
       if (!this.$refs.form.validate()) {
         return;
       }
-      this.$store.commit('pushNewProject', this.form);
+      this.$store.commit("pushNewProject", this.form);
       this.navigateToProjectsPage();
     },
 
@@ -135,8 +124,8 @@ export default {
      * @return {void}
      */
     clearFormInputs() {
-      this.$refs.form.reset()
-    }
+      this.$refs.form.reset();
+    },
   },
 };
 </script>
